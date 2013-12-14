@@ -9,6 +9,7 @@ class AttrDict(dict):
 
 urls = AttrDict({
     'set_cookie': '/set_cookie',
+    'change_cookie': '/change_cookie',
 })
 
 
@@ -24,7 +25,9 @@ me = u'<span style="color: red"><b>Я</b></span> - страничка'
 
 responses = AttrDict({
     'set_cookie': u'%s, устанавливающая cookie' % me,
+    'change_cookie': u'%s, изменяющая cookie' % me,
 })
 
 
 simple_cookie = {'name': 'Cookie_name', 'value': 'Cookie_value'}
+changed_cookie = {'name': 'Cookie_name', 'value': 'Changed_cookie_value'}

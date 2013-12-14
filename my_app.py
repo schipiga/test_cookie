@@ -2,7 +2,12 @@
 
 from flask import Flask, Response
 
-from features.steps.helpers import urls, responses, simple_cookie
+from features.steps.helpers import (
+    urls,
+    responses,
+    simple_cookie,
+    changed_cookie,
+)
 from features.environment import HOST, PORT
 
 app = Flask(__name__)
@@ -15,6 +20,13 @@ def set_cookie():
     response.set_cookie(*simple_cookie.values())
     return response
 
+
+@app.route(urls.change_cookie)
+def change_cookie():
+    response = Response()
+    response.set_data(responses.change_cookie)
+    response.set_cookie(*changed_cookie.values())
+    return response
 
 if __name__ == "__main__":
     app.run(host=HOST, port=PORT)
