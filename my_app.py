@@ -3,6 +3,7 @@
 from flask import Flask, Response
 
 from features.steps.helpers import urls, responses, simple_cookie
+from features.environment import HOST, PORT
 
 app = Flask(__name__)
 
@@ -16,4 +17,4 @@ def set_cookie():
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(host=HOST, port=PORT)
