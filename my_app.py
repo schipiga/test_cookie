@@ -12,6 +12,7 @@ from features.steps.helpers import (
     pathed_cookie,
     domained_cookie,
     unicoded_cookie,
+    secured_cookie,
 )
 
 app = Flask(__name__)
@@ -87,6 +88,15 @@ def long_cookie():
     COOKIE_LENGTH = 1000000
     response = Response()
     response.set_cookie('long cookie', COOKIE_LENGTH * 'a')
+    return response
+
+
+@app.route(urls.secure_cookie)
+def secure_cookie():
+    response = Response(response=responses.secure_cookie)
+    cookie = deepcopy(secured_cookie)
+    name = cookie.pop('name')
+    response.set_cookie(name, **cookie)
     return response
 
 

@@ -18,6 +18,7 @@ urls = AttrDict({
     'unicode_cookie': '/unicode_cookie',
     'long_cookie': '/long_cookie',
     'empty_cookie': '/empty_cookies',
+    'secure_cookie': '/secure_cookie',
 })
 
 asserts = AttrDict({
@@ -30,6 +31,7 @@ asserts = AttrDict({
     'cookie_not_expired': u'Истекшая cookie не исчезла',
     'server_still_alive': u'Сервер до сих пор еще жив?!',
     'many_cookies': u'Ого! А кук-то передалось много!',
+    'secure_cookie_present': u'Ахтунг! Секурная кука присутствует!',
 })
 
 me = u'<span style="color: red"><b>Я</b></span> - страничка'
@@ -42,6 +44,7 @@ responses = AttrDict({
                      u' для определенного адреса хоста' % me,
     'domained_cookie': u'%s, устанавливающая cookie'
                        u' для определенного домена' % me,
+    'secure_cookie': u'%s, отдающая секурную куку' % me,
 })
 
 ALIEN_HOST = '127.0.0.1'
@@ -73,4 +76,9 @@ domained_cookie = {
 unicoded_cookie = {
     'name': 'Cookie_name',
     'value': u'Я - юникодная кука',
+}
+secured_cookie = {
+    'name': 'Secured cookie name',
+    'value': 'Secured cookie value',
+    'secure': True,
 }

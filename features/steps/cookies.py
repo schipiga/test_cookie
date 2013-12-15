@@ -115,6 +115,12 @@ def step(context):
     context.chrome.get(context.host + urls.long_cookie)
 
 
+@when(u'я открываю страницу, отдающую секурную куку')
+def step(context):
+    context.chrome.delete_all_cookies()
+    context.chrome.get(context.host + urls.secure_cookie)
+
+
 @then(u'в браузере устанавливается кука')
 def step(context):
     cookies = context.chrome.get_cookies()
@@ -216,3 +222,8 @@ def step(context):
 def step(context):
     context.chrome.get(context.host + urls.path_to_cookie)
     assert json.loads(context.json_page()), asserts.cookie_not_found
+
+
+@then(u'в браузере не будет секурной куки, т.к. протокол незащищенный')
+def step(context):
+    assert not context.chrome.get_cookies(), asserts.secure_cookie_present
