@@ -1,5 +1,10 @@
 # coding: utf-8
 
+'''
+Приложение, чтобы проверить
+запрет передачи куки на чужой домен
+'''
+
 from features.steps.helpers import urls
 from flask import Flask, request, jsonify
 

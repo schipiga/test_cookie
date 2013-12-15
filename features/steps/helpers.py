@@ -17,11 +17,11 @@ urls = AttrDict({
     'foreign_cookie': '/foreign_cookie',
     'unicode_cookie': '/unicode_cookie',
     'long_cookie': '/long_cookie',
-    'many_cookies': '/many_cookies',
-    'null_cookie': '/null_cookies',
+    'empty_cookie': '/empty_cookies',
 })
 
 asserts = AttrDict({
+    'expected_one_cookie': u'Ожидалась одна кука',
     'cookie_not_found': u'Cookie не найдено',
     'name_not_found': u'Имя cookie не найдено',
     'value_not_found': u'Значение cookie не найдено',
@@ -29,6 +29,7 @@ asserts = AttrDict({
     'cookies_still_present': u'Cookies не удалились',
     'cookie_not_expired': u'Истекшая cookie не исчезла',
     'server_still_alive': u'Сервер до сих пор еще жив?!',
+    'many_cookies': u'Ого! А кук-то передалось много!',
 })
 
 me = u'<span style="color: red"><b>Я</b></span> - страничка'
@@ -37,8 +38,10 @@ responses = AttrDict({
     'set_cookie': u'%s, устанавливающая cookie' % me,
     'change_cookie': u'%s, изменяющая cookie' % me,
     'expired_cookie': u'%s, устанавливающая cookie c лимитом жизни' % me,
-    'pathed_cookie': u'%s, устанавливающая cookie для определенного адреса хоста' % me,
-    'domained_cookie': u'%s, устанавливающая cookie для определенного домена' % me,
+    'pathed_cookie': u'%s, устанавливающая cookie'
+                     u' для определенного адреса хоста' % me,
+    'domained_cookie': u'%s, устанавливающая cookie'
+                       u' для определенного домена' % me,
 })
 
 simple_cookie = {
@@ -59,13 +62,11 @@ pathed_cookie = {
     'value': 'Cookie_value',
     'path': '/path_to_cookie',
 }
-
 domained_cookie = {
     'name': 'Cookie_name',
     'value': 'Cookie_value',
     'domain': '127.0.0.1:9999',
 }
-
 unicoded_cookie = {
     'name': 'Cookie_name',
     'value': u'Я - юникодная кука',

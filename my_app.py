@@ -2,7 +2,7 @@
 
 from copy import deepcopy
 from flask import Flask, Response, request, jsonify
-
+from features.environment import HOST, PORT
 from features.steps.helpers import (
     urls,
     responses,
@@ -13,31 +13,27 @@ from features.steps.helpers import (
     domained_cookie,
     unicoded_cookie,
 )
-from features.environment import HOST, PORT
 
 app = Flask(__name__)
 
 
 @app.route(urls.set_cookie)
 def set_cookie():
-    response = Response()
-    response.set_data(responses.set_cookie)
+    response = Response(response=responses.set_cookie)
     response.set_cookie(*simple_cookie.values())
     return response
 
 
 @app.route(urls.change_cookie)
 def change_cookie():
-    response = Response()
-    response.set_data(responses.change_cookie)
+    response = Response(response=responses.change_cookie)
     response.set_cookie(*changed_cookie.values())
     return response
 
 
 @app.route(urls.expired_cookie)
 def expire_cookie():
-    response = Response()
-    response.set_data(responses.expired_cookie)
+    response = Response(response=responses.expired_cookie)
     cookie = deepcopy(expired_cookie)
     name = cookie.pop('name')
     response.set_cookie(name, **cookie)
@@ -46,8 +42,7 @@ def expire_cookie():
 
 @app.route(urls.pathed_cookie)
 def path_cookie():
-    response = Response()
-    response.set_data(responses.pathed_cookie)
+    response = Response(response=responses.pathed_cookie)
     cookie = deepcopy(pathed_cookie)
     name = cookie.pop('name')
     response.set_cookie(name, **cookie)
@@ -66,8 +61,7 @@ def path_to_cookie():
 
 @app.route(urls.foreign_cookie)
 def foreign_cookie():
-    response = Response()
-    response.set_data(responses.domained_cookie)
+    response = Response(response=responses.domained_cookie)
     cookie = deepcopy(domained_cookie)
     name = cookie.pop('name')
     response.set_cookie(name, **cookie)
@@ -81,7 +75,7 @@ def unicode_cookie():
     return response
 
 
-@app.route(urls.null_cookie)
+@app.route(urls.empty_cookie)
 def null_cookie():
     response = Response()
     response.set_cookie('', '')
@@ -90,16 +84,9 @@ def null_cookie():
 
 @app.route(urls.long_cookie)
 def long_cookie():
+    COOKIE_LENGTH = 1000000
     response = Response()
-    response.set_cookie('long cookie', 1000000 * 'a')
-    return response
-
-
-@app.route(urls.many_cookies)
-def many_cookies():
-    response = Response()
-    for i in xrange(10000):
-        response.set_cookie('cookie_%i' % i, 'value_%i' % i)
+    response.set_cookie('long cookie', COOKIE_LENGTH * 'a')
     return response
 
 
