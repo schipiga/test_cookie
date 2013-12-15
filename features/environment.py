@@ -2,6 +2,7 @@
 
 import os
 import re
+import time
 import subprocess
 
 from selenium import webdriver
@@ -10,12 +11,14 @@ from selenium import webdriver
 DRIVER_FILE = 'chromedriver'
 DRIVER_PATH = os.path.join(os.curdir, DRIVER_FILE)
 PROTOCOL = 'http'
-HOST = 'localhost'
+HOST = '127.0.0.1'
 PORT = 5000
 
 
 def before_all(context):
     context.server = subprocess.Popen(('python', 'my_app.py'))
+    # подождем пока сервер стартует
+    time.sleep(2)
     context.host = '%s://%s:%s' % (PROTOCOL, HOST, PORT)
     # сохраним в контекте, т.к. нужно будет открыть один экземпляр в тесте
     context.driver_path = DRIVER_PATH

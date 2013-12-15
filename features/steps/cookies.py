@@ -18,6 +18,8 @@ from helpers import (
     changed_cookie,
     expired_cookie,
     unicoded_cookie,
+    ALIEN_HOST,
+    ALIEN_PORT,
 )
 
 COOKIES_LIMIT = 500  # для проверки максимального количества принимаемых кук
@@ -182,7 +184,8 @@ def step(context):
     # подождем пока оно стартанет
     time.sleep(2)
     # попробуем передать куку на внешний домен
-    context.chrome.get('http://127.0.0.1:9999' + urls.return_cookies)
+    context.chrome.get(
+        'http://%s:%s' % (ALIEN_HOST, ALIEN_PORT) + urls.return_cookies)
     server.kill()
     assert not json.loads(context.json_page()), asserts.cookie_still_present
 

@@ -65,9 +65,12 @@ pathed_cookie = {
 domained_cookie = {
     'name': 'Cookie_name',
     'value': 'Cookie_value',
-    'domain': '127.0.0.1:9999',
+    'domain': 'localhost',
 }
 unicoded_cookie = {
     'name': 'Cookie_name',
     'value': u'Я - юникодная кука',
 }
+
+ALIEN_HOST = 'localhost'
+ALIEN_PORT = '9999'
