@@ -160,7 +160,7 @@ def step(context):
         asserts.server_still_alive
 
 
-@then(u'у меня количество кук ограничено')
+@then(u'количество кук в браузере ограничено')
 def step(context):
     assert len(context.chrome.get_cookies()) < COOKIES_LIMIT, asserts.many_cookies
 
@@ -207,11 +207,6 @@ def step(context):
     assert not json.loads(context.json_page()), asserts.cookie_not_expired
 
 
-@then(u'у меня не остается кук')
-def step(context):
-    assert not context.chrome.get_cookies(), asserts.cookies_still_present
-
-
 @then(u'эта кука будет передаваться другим страницам хоста')
 def step(context):
     context.chrome.get(context.host + urls.return_cookies)
@@ -227,3 +222,8 @@ def step(context):
 @then(u'в браузере не будет секурной куки, т.к. протокол незащищенный')
 def step(context):
     assert not context.chrome.get_cookies(), asserts.secure_cookie_present
+    
+
+@then(u'в браузере не остается кук')
+def step(context):
+    assert not context.chrome.get_cookies(), asserts.cookies_still_present
