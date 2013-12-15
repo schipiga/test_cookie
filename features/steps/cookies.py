@@ -136,7 +136,7 @@ def step(context):
 @then(u'в браузере будет кука содержащая utf-8 символы')
 def step(context):
     cookies = context.chrome.get_cookies()
-    assert not cookies[0]['value'] == unicoded_cookie['value'], \
+    assert cookies[0]['value'] == unicoded_cookie['value'], \
         asserts.value_not_found
 
 
