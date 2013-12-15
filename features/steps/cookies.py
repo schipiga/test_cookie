@@ -190,7 +190,7 @@ def step(context):
     assert not json.loads(context.json_page()), asserts.cookie_still_present
 
 
-@then(u'в браузере не остается этой куки')
+@then(u'в браузере не остается куки')
 def step(context):
     assert not context.chrome.get_cookie(simple_cookie['name']), \
         asserts.cookie_still_present
