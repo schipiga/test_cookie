@@ -44,6 +44,9 @@ responses = AttrDict({
                        u' для определенного домена' % me,
 })
 
+ALIEN_HOST = '127.0.0.1'
+ALIEN_PORT = '9999'
+
 simple_cookie = {
     'name': 'Cookie_name',
     'value': 'Cookie_value',
@@ -65,12 +68,9 @@ pathed_cookie = {
 domained_cookie = {
     'name': 'Cookie_name',
     'value': 'Cookie_value',
-    'domain': 'localhost',
+    'domain': ALIEN_HOST,
 }
 unicoded_cookie = {
     'name': 'Cookie_name',
     'value': u'Я - юникодная кука',
 }
-
-ALIEN_HOST = 'localhost'
-ALIEN_PORT = '9999'

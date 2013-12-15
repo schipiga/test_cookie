@@ -11,7 +11,7 @@ from selenium import webdriver
 DRIVER_FILE = 'chromedriver'
 DRIVER_PATH = os.path.join(os.curdir, DRIVER_FILE)
 PROTOCOL = 'http'
-HOST = '127.0.0.1'
+HOST = 'localhost'
 PORT = 5000
 
 
@@ -28,6 +28,7 @@ def before_all(context):
         '<[^<]+?>', '', context.chrome.page_source)
 
 
+# TODO: подумать над тем правильно ли в каждом сценарии запускать браузер
 def before_scenario(context, scenario):
     context.chrome = webdriver.Chrome(DRIVER_PATH)
 
